@@ -1,225 +1,138 @@
-
 <!DOCTYPE html>
-
 <html>
 
 <head>
-
     <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
     <title>OTIMES</title>
-
           <!-- Bootstrap -->
-
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
-    <script defer
-
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjwrj_qlyhO1SxoM6HEhmsGUkgJty0Mko&callback=initMap">
-
-</script>
-
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.min.js"></script>
-
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/css/bootstrap.min.css">
-
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-
+  
   <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/js/alljs" integrity="sha512-th3I8avnzF4BCwrfylow7+VRKCXRtC5gsZA8G4ZqaGyhFzNz7BtmPcZs/qjBv0qVRhPAlqzGwkZAliB0AAQbWQ==" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.css" integrity="sha512-Cb0WDP6lVyVaQJulFMEOBGpkgqU6UAOEBpthbb9BfdhmUXnmYQwobuCm6Xp2YYL6Pd/l0ZA5Up/ijp0fu+nFpQ==" crossorigin="anonymous" />
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/allcss" integrity="sha512-Cb0WDP6lVyVaQJulFMEOBGpkgqU6UAOEBpthbb9BfdhmUXnmYQwobuCm6Xp2YYL6Pd/l0ZA5Up/ijp0fu+nFpQ==" crossorigin="anonymous" />
-
+ <script src="https://maps.google.com/maps/api/js?sensor=false"></script>
   <!-- Custom Styles -->
-    <link rel="stylesheet" type="text/css" href="map.css" />
-
   <link rel="stylesheet" href="bootstrp.css">
-
-  <link rel="stylesheet" href="font-awesomecss">
-
+  <link rel="stylesheet" href="font-awesome.css">
   <link rel="stylesheet" href="bootstrap-social.css">
-
 </head>
 
 <body>
-
 <div class="card text-white bg-secondary mb-3">
-
-  <h5 class="card-header"><i class="fa fa-clock-o"></i> Online Digital Time</h5>
-
+  <h5 class="card-header"> <i class="fa fa-clock"></i> Online Digital Time</h5>
   <div class="card-body">
-
      <script src="greetings.js"></script>
-
+     <br>
      <script src="location.js"></script>
-
   <h5 class="card-title">TIME</h5>
-
     <p class="card-text" id="otime"></p>
-
     <h5 class="card-title">DAY</h5>
-
     <p class="card-text" id="days"> </p>
-
     <h5 class="card-title">DATE</h5>
-
     <p class="card-text" id="dat"> </p>
-
      <h5 class="card-title">MONTH</h5>
-
      <p class="card-text" id="mont"> </p>
-
     <h5 class="card-title">YEAR</h5>
-
     <p class="card-text">
-
     <script type="text/javascript">document.write(new Date().getFullYear())</script></p>
-
+     
+    <p class="card-text" style="float: right;">
+      <script>
+        var now = new Date();
+        var start = new Date(now.getFullYear(), 0, 0);
+        var diff = (now - start) + ((start.getTimezoneOffset() - now.getTimezoneOffset()) * 60 * 1000);
+        var oneDay = 1000 * 60 * 60 * 24;
+        var days = Math.floor(diff / oneDay);
+        document.write("Number of days: "+days+" "); //document.write(new Date().getFullYear());
+      </script>
+    </p>
+    <br>
+    <p class="card-text" style="float:right;">
+    <script> 
+    var days = function(month,year) {
+         return new Date(year, month, 0).getDate();
+      };
+      document.write("Days in November: "+days(11, 2020)); // July month
+      document.write("<br>Days in December: "+days(12, 2020)); // September Month
+      
+    </script>
+    </p>
+    <br><br><br>
     <a href="info.html" class="btn btn-danger btn-lg btn-block"><i class="fa fa-dashboard"></i> Your Device Info</a>
-  <br>
-   <div id="map" style="width: 280px; height: 300px;"></div>
-
-   <div id="iframe-content"></div>
-   
- 
-   <!--
-
-  <br><br>
-
-  <p class="card-text">Share 
-
-   <br /><br>
-
-   <a class="btn btn-lg btn-block btn-success" href="#"><i class="fa fa-whatsapp"></i></a>
-
-   
-
- <a class="btn btn-lg btn-block btn-primary" href="#"><i class="fa fa-facebook"></i></a>
-
- 
-
-  <a class="btn btn-lg btn-block btn-danger" href="#"><i class="fa fa-instagram"></i></a>
-
- 
-
- <a class="btn btn-lg btn-block btn-info" href="#"><i class="fa fa-twitter"></i></a>
-
- 
-
- <a class="btn btn-lg btn-block btn-primary" href="#"><i class="fa fa-linkedin"></i></a>
-
- 
-
- <a class="btn btn-lg btn-block btn-default" href="#"><i class="fa fa-github"></i></a>
-
- </div>
-
- -->
-
- <br><br>
-
-  <div class="card-footer text-white">
-
-   &copy 2020 | OTIMES | Creative Commons | Developed by: Dave
-
-  </div>
-
+    <button type="button" onclick="showPosition();" class="btn btn-success btn-lg btn-block "><i class="fa fa-map"></i> Google Map</button>
+    <br>
+ <div id="embedMap" style="width: 280px; height: 300px;">
 </div>
-
+    <!--
+  <br><br>
+  <p class="card-text">Share 
+   <br /><br>
+   <a class="btn btn-lg btn-block btn-success" href="#"><i class="fa fa-whatsapp"></i></a>
+   
+ <a class="btn btn-lg btn-block btn-primary" href="#"><i class="fa fa-facebook"></i></a>
+ 
+  <a class="btn btn-lg btn-block btn-danger" href="#"><i class="fa fa-instagram"></i></a>
+ 
+ <a class="btn btn-lg btn-block btn-info" href="#"><i class="fa fa-twitter"></i></a>
+ 
+ <a class="btn btn-lg btn-block btn-primary" href="#"><i class="fa fa-linkedin"></i></a>
+ 
+ <a class="btn btn-lg btn-block btn-default" href="#"><i class="fa fa-github"></i></a>
+ </div>
+ -->
+ <br><br>
+  <div class="card-footer text-white">
+   &copy 2020 | OTIMES | Creative Commons | Developed by: Dave
+  </div>
+</div>
 </body>
-
 <script>
-
 var myVar = setInterval(myTimer, 1000);
-
 function myTimer() {
-
 var d = new Date();
-
 document.getElementById("otime").innerHTML = d.toLocaleTimeString(); 
-
   
-
 }
-
 </script>
-
 <script>
-
     var today = new Date();
-
     var date = today.getDate();
-
     document.getElementById("dat").innerHTML = " " + date;
-
     // Returns 27
-
     //document.write(date);
-
 </script>
-
 <script>
-
    var month = new Date();
-
    document.getElementById("mont").innerHTML = month.getMonth() + 1;
-
     // Returns 27
-
 </script>
-
 <script>
-
-  var day;
-
-  switch (new Date().getDay()) {
-
-      case 0:
-
-          day = "Sunday";
-
-          break;
-
-      case 1:
-
-          day = "Monday";
-
-          break;
-
-      case 2:
-
-          day = "Tuesday";
-
-          break;
-
-      case 3:
-
-          day = "Wednesday";
-
-          break;
-
-      case 4:
-
-          day = "Thursday";
-
-          break;
-
-      case 5:
-
-          day = "Friday";
-
-          break;
-
-      case  6:
-
-          day = "Saturday";
-
-  }
-
-  document.getElementById("days").innerHTML = " " + day;
-
-  </script>
-
-  
-
+		var day;
+		switch (new Date().getDay()) {
+		    case 0:
+		        day = "Sunday";
+		        break;
+		    case 1:
+		        day = "Monday";
+		        break;
+		    case 2:
+		        day = "Tuesday";
+		        break;
+		    case 3:
+		        day = "Wednesday";
+		        break;
+		    case 4:
+		        day = "Thursday";
+		        break;
+		    case 5:
+		        day = "Friday";
+		        break;
+		    case  6:
+		        day = "Saturday";
+		}
+		document.getElementById("days").innerHTML = " " + day;
+		</script>
 </html>

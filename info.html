@@ -1,272 +1,151 @@
-
 <!DOCTYPE html>
-
 <html>
 
 <head>
-
     <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
     <title>Your Device Information</title>
-
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
-
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.min.js"></script>
-
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/css/bootstrap.min.css">
-
   
-
   <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/js/alljs" integrity="sha512-th3I8avnzF4BCwrfylow7+VRKCXRtC5gsZA8G4ZqaGyhFzNz7BtmPcZs/qjBv0qVRhPAlqzGwkZAliB0AAQbWQ==" crossorigin="anonymous"></script>
-
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.css" integrity="sha512-Cb0WDP6lVyVaQJulFMEOBGpkgqU6UAOEBpthbb9BfdhmUXnmYQwobuCm6Xp2YYL6Pd/l0ZA5Up/ijp0fu+nFpQ==" crossorigin="anonymous" />
-
 </head>
 
 <body>
- <a class="card-text" href="index.html"><i class="fa fa-arrow-left"></i></a>
+  <a class="" href="Otimes.html"><i class="fa fa-arrow-left"></i></a>
   <h2 class="h2" style="text-align: center;">Device Information</h2>
-
   <p id="info"></p>
-
   <p style="margin-left:10px;">
-
   <script>
-
   /**
-
     document.getElementById("info").innerHTML = navigator.userAgent;
-
     **/
-
     
-
     agent = {browser:{name:null,version:null,v:null,userAgent:null,device:null,app:null,os:null},mobile:false,pointlock:false};
 
+var deviceOnl = navigator.onLine;
 var deviceCpu = navigator.hardwareConcurrency;
-
 var deviceRam = navigator.deviceMemory;
-
 var deviceTouch = navigator.maxTouchPoints;
-
 var devicePlatform = navigator.platform;
-
 var deviceLang = navigator.language;
-
 var deviceCookie = navigator.cookieEnabled;
 
 var deviceVendor = navigator.vendor;
-
 var nVer = navigator.appVersion;
-
 var nAgt = navigator.userAgent;
-
 var browserName  = navigator.appName;
 
 var fullVersion  = ''+parseFloat(navigator.appVersion); 
-
 var majorVersion = parseInt(navigator.appVersion,10);
-
 var nameOffset,verOffset,ix;
-
 agent.pointlock = 'pointerLockElement' in document ||
-
     'mozPointerLockElement' in document ||
-
     'webkitPointerLockElement' in document;
 
 // In Opera, the true version is after "Opera" or after "Version"
-
 if ((verOffset=nAgt.indexOf("Opera"))!=-1) {
-
  browserName = "Opera";
-
  fullVersion = nAgt.substring(verOffset+6);
-
  if ((verOffset=nAgt.indexOf("Version"))!=-1) 
-
    fullVersion = nAgt.substring(verOffset+8);
-
 }
-
 // In MSIE, the true version is after "MSIE" in userAgent
-
 else if ((verOffset=nAgt.indexOf("MSIE"))!=-1) {
-
  browserName = "Microsoft Internet Explorer";
-
  fullVersion = nAgt.substring(verOffset+5);
-
 }
-
 // In Chrome, the true version is after "Chrome" 
-
 else if ((verOffset=nAgt.indexOf("Chrome"))!=-1) {
-
  browserName = "Chrome";
-
  fullVersion = nAgt.substring(verOffset+7);
-
 }
-
 // In Safari, the true version is after "Safari" or after "Version" 
-
 else if ((verOffset=nAgt.indexOf("Safari"))!=-1) {
-
  browserName = "Safari";
-
  fullVersion = nAgt.substring(verOffset+7);
-
  if ((verOffset=nAgt.indexOf("Version"))!=-1) 
-
    fullVersion = nAgt.substring(verOffset+8);
-
 }
-
 // In Firefox, the true version is after "Firefox" 
-
 else if ((verOffset=nAgt.indexOf("Firefox"))!=-1) {
-
  browserName = "Firefox";
-
  fullVersion = nAgt.substring(verOffset+8);
-
 }
-
 // In most other browsers, "name/version" is at the end of userAgent 
-
 else if ( (nameOffset=nAgt.lastIndexOf(' ')+1) < 
-
           (verOffset=nAgt.lastIndexOf('/')) ) 
-
 {
-
  browserName = nAgt.substring(nameOffset,verOffset);
-
  fullVersion = nAgt.substring(verOffset+1);
-
  if (browserName.toLowerCase()==browserName.toUpperCase()) {
-
   browserName = navigator.appName;
-
  }
-
 }
-
 // trim the fullVersion string at semicolon/space if present
-
 if ((ix=fullVersion.indexOf(";"))!=-1)
-
    fullVersion=fullVersion.substring(0,ix);
-
 if ((ix=fullVersion.indexOf(" "))!=-1)
-
    fullVersion=fullVersion.substring(0,ix);
 
 majorVersion = parseInt(''+fullVersion,10);
-
 if (isNaN(majorVersion)) {
-
  fullVersion  = ''+parseFloat(navigator.appVersion); 
-
  majorVersion = parseInt(navigator.appVersion,10); 8
-
 }
-
 agent.browser.device = devicePlatform;
-
 agent.browser.device = deviceCookie;
-
+agent.browser.device = deviceOnl;
 agent.browser.name = deviceVendor;
-
 agent.browser.device = deviceLang;
-
 agent.browser.device = deviceTouch;
-
 agent.browser.device = deviceRam;
-
 agent.browser.device = deviceCpu;
-
 agent.browser.name = browserName;
-
 agent.browser.version = fullVersion;
-
 agent.browser.v = majorVersion;
-
 agent.browser.app = navigator.appName;
-
 agent.browser.userAgent = navigator.userAgent;
-
 var OSName="Unknown OS";
-
 if(navigator.appVersion.indexOf("And")!=-1) OSName="Android";
-
 if(navigator.appVersion.indexOf("IOS")!=-1) OSName="iPhone";
-
 if (navigator.appVersion.indexOf("Win")!=-1) OSName="Windows";
-
 if (navigator.appVersion.indexOf("Mac")!=-1) OSName="MacOS";
-
 if (navigator.appVersion.indexOf("X11")!=-1) OSName="UNIX";
-
 if (navigator.appVersion.indexOf("Linux")!=-1) OSName="Linux";
 
 agent.browser.os = OSName;
-
 agent.mobile = (typeof window.orientation !== "undefined") || (navigator.userAgent.indexOf('IEMobile') !== -1);
 
 document.write("Browser Name: "+browserName);
-
 document.write('<br>');
-
 document.write("Operating System: "+OSName);
-
 document.write('<br>');
-
 document.write("Browser Version: "+fullVersion);
-
 document.write('<br>');
-
 document.write("CPU Core-count: "+deviceCpu);
-
 document.write("<br>");
-
 document.write("RAM Memory: "+deviceRam);
-
 document.write("<br>");
-
 document.write("Max Touch Points: "+deviceTouch);
-
 document.write("<br>");
-
 document.write("Language: "+deviceLang);
-
 document.write("<br>");
-
 document.write("Device Cookie: "+deviceCookie);
-
 document.write("<br>");
-
 document.write("Device Vendor: "+deviceVendor);
-
 document.write("<br>");
-
 document.write("Device Pixel Ratio: "+devicePixelRatio);
-
 document.write("<br>");
-
 document.write("Device Platform: "+devicePlatform);
-
 document.write("<br>");
-
 document.write("User Agent: "+nAgt);
-
+document.write("<br>");
+document.write("Your Device Internet Connection: "+deviceOnl);
   </script>
-
   </p>
-
 </body>
 
 </html>

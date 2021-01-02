@@ -48,19 +48,18 @@
         var days = Math.floor(diff / oneDay);
         document.write("Number of days: "+days+" "); //document.write(new Date().getFullYear());
       </script>
-    </p>
-    <br>
-    <p class="card-text" style="float:right;">
+</p>
+    <p class="card-text" style="float:right;" id="dayz"></p>
+    <p class="card-text" style="float: right;" id="daze"></p>
     <script> 
     var days = function(month,year) {
          return new Date(year, month, 0).getDate();
       };
-      document.write("Days in January, 2021: "+days(1, 2021)); // July month
-      document.write("<br>Days in February, 2021 : "+days(2, 2021)); // September Month
-      
+      document.getElementById("days").innerHTML =" Number of days in January: "+days(1, 2021); // January,  month
+       document.getElementById("daze").innerHTML =" Number of days in February: "+days(2, 2021); // February Month
     </script>
-    </p>
-    <br><br><br>
+   
+    <br><br><br><br><br>
     <a href="info.html" class="btn btn-danger btn-lg btn-block"><i class="fa fa-dashboard"></i> Your Device Info</a>
     <button type="button" onclick="showPosition();" class="btn btn-success btn-lg btn-block "><i class="fa fa-map"></i> FindMy Location</button>
     <br>

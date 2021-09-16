@@ -40,17 +40,19 @@
     <script type="text/javascript">document.write(new Date().getFullYear())</script></p>
      
     <p class="card-text" style="float: right;">
-      <script>
+      <script type="text/javascript">
         var now = new Date();
         var start = new Date(now.getFullYear(), 0, 0);
         var diff = (now - start) + ((start.getTimezoneOffset() - now.getTimezoneOffset()) * 60 * 1000);
         var oneDay = 1000 * 60 * 60 * 24;
         var days = Math.floor(diff / oneDay);
-        document.write("Number of days: "+days+" "); //document.write(new Date().getFullYear());
+        //document.write("Number of days: "+days+" ");
+	document.getElementById("days").innerHTML ="Number of days: "+days();
       </script>
 </p>
     <p class="card-text" style="float: right;" id="days_1"></p>
     <p class="card-text" style="float:right;" id="days_2"></p>
+    <p class="card-text" style="float:right;" id="days"></p>
     <script> 
     var days = function(month,year) {
          return new Date(year, month, 0).getDate();

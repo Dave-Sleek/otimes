@@ -49,14 +49,14 @@
         document.write("Number of days: "+days+" "); //document.write(new Date().getFullYear());
       </script>
 </p>
-    <p class="card-text" style="float:right;" id="dayz"></p>
-    <p class="card-text" style="float: right;" id="daze"></p>
+    <p class="card-text" style="float: right;" id="days_1"></p>
+    <p class="card-text" style="float:right;" id="days_2"></p>
     <script> 
     var days = function(month,year) {
          return new Date(year, month, 0).getDate();
       };
-      document.getElementById("dayz").innerHTML =" Number of days in September: "+" "+days(9, 2021); // January,  month
-      document.getElementById("daze").innerHTML =" Number of days in October: "+" "+days(10, 2021); // February Month
+      document.getElementById("days_1").innerHTML ="Number of days in September:"+" "+" "+days(9, 2021); // January,  month
+      document.getElementById("days_2").innerHTML ="Number of days in October:"+" "+" "+days(10, 2021); // February Month
     </script>
    
     <br><br><br><br><br>
